@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Loan Calculator</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">how much would you like <span class="green-text">to borrow?</span></h1>
+
+    <form class="form" action="#">
+      <div class="form-box">
+        <div class="form-side">
+          <!-- borrow amount -->
+          <div class="form-item">
+            <label class="form__label">Borrow Amount</label>
+            <input type="range" id="amount" name="amount" class="input-range" min="1000" max="20000">
+            <div class="form-minmax">
+              <span class="form-minmax-item">£1000</span>
+              <span class="form-minmax-item">£20k</span>
+            </div>
+            <span id="borrow" class="form__res">£10,500</span>
+          </div>
+          <!-- payment period -->
+          <div class="form-item">
+            <label class="form__label">Payment Period</label>
+            <input type="range" id="period" name="period" class="input-range" min="1" max="15">
+            <div class="form-minmax">
+              <span class="form-minmax-item">1 Year</span>
+              <span class="form-minmax-item">15 Years</span>
+            </div>
+            <span id="period-span" class="form__res">7 Years</span>
+          </div>
+          <!-- deposit date -->
+          <div class="deposit-date-item">
+            <label for="date">Deposit Date</label>
+            <div class="deposit-date-box">
+              <span class="rate" id="rate">4.95%</span>
+              <div class="calendar-box">
+                <input type="date" name="calendar" id="calendar" value="YYYY-MM-DD">
+              </div>
+            </div>
+          </div>
+          <!-- type of payment -->
+          <div class="payment-item">
+            <div>
+              <input type="radio" id="radio-1" class="payment" name="payment" value="false" checked>
+              <label class="radio-label" for="radio-1">Deposit Bank Transfer</label>
+            </div>
+            <div>
+              <input type="radio" id="radio-2" class="payment" name="payment" value="true">
+              <label class="radio-label" for="radio-2">Cash</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-side">
+          <!-- monthly payment -->
+          <div class="monthly-payment-item">
+            <span class="monthly-payment__text">monthly payment</span>
+            <span class="monthly-payment__value">£80,20.00</span>
+            <span class="monthly-payment__fees">fees include</span>
+          </div>
+          <!-- borrowing and to repay -->
+          <div class="totals-box">
+            <div class="total borrowing">
+              <span class="total-text borrowing__text">borrowing</span>
+              <span class="total-value borrowing__value">£2,000.00</span>
+            </div>
+            <div class="total green repay">
+              <span class="total-text repay__text">to repay</span>
+              <span class="total-value repay__value">£3,500.00</span>
+            </div>
+          </div>
+          <button class="btn" type="submit">send form</button>
+        </div>
+      </div>
+    </form>
+  </div>  
+
+  <script src="main.js"></script>
+
+  <script>
+    function upperCase(string) {
+      let upperCaseString = string.split(' ').map((elem) => {
+        let newElem = elem.charAt(0).toUpperCase() + elem.slice(1);
+        return newElem;
+      })
+      return upperCaseString.join(' ');
+    }
+    let title = document.querySelector('.title');
+    let monthlyPaymentText = document.querySelector('.monthly-payment__text');
+    title.innerHTML = upperCase(title.textContent);
+    monthlyPaymentText.innerHTML = upperCase(monthlyPaymentText.textContent);
+  </script>
+
+</body>
+</html>
