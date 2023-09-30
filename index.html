@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="css/style.css">
 
   <!-- fonts -->
@@ -14,7 +15,7 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="title">how much would you like <span class="green-text">to borrow?</span></h1>
+    <h1 class="title">How Much Would You Like <span class="green-text">To Borrow?</span></h1>
 
     <form class="form" action="#">
       <div class="form-box">
@@ -22,7 +23,7 @@
           <!-- borrow amount -->
           <div class="form-item">
             <label class="form__label">Borrow Amount</label>
-            <input type="range" id="amount" name="amount" class="input-range" min="1000" max="20000">
+            <input type="range" id="amount" name="amount" class="input-range" min="1000" max="20000" required>
             <div class="form-minmax">
               <span class="form-minmax-item">£1000</span>
               <span class="form-minmax-item">£20k</span>
@@ -32,7 +33,7 @@
           <!-- payment period -->
           <div class="form-item">
             <label class="form__label">Payment Period</label>
-            <input type="range" id="period" name="period" class="input-range" min="1" max="15">
+            <input type="range" id="period" name="period" class="input-range" min="1" max="15" required>
             <div class="form-minmax">
               <span class="form-minmax-item">1 Year</span>
               <span class="form-minmax-item">15 Years</span>
@@ -44,8 +45,12 @@
             <label for="date">Deposit Date</label>
             <div class="deposit-date-box">
               <span class="rate" id="rate">4.95%</span>
-              <div class="calendar-box">
-                <input type="date" name="calendar" id="calendar" value="YYYY-MM-DD">
+              <div id="calendar-box" data-date>        
+                <input type="text" id="calendar" placeholder="01/12/2023" required>
+                <!-- <img class="calendar-icon" src="img/Calendar-icon.png" title="toggle" data-toggle alt="calendar-icon">  -->
+                <a class="calendar-icon" title="toggle" data-toggle>
+                  <img src="img/Calendar-icon.png" alt="calendar-icon">
+              </a>
               </div>
             </div>
           </div>
@@ -72,7 +77,7 @@
           <div class="totals-box">
             <div class="total borrowing">
               <span class="total-text borrowing__text">borrowing</span>
-              <span class="total-value borrowing__value">£2,000.00</span>
+              <span class="total-value borrowing__value">£10,500.00</span>
             </div>
             <div class="total green repay">
               <span class="total-text repay__text">to repay</span>
@@ -85,9 +90,11 @@
     </form>
   </div>  
 
-  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="js/main.js"></script>
 
   <script>
+    // Функция toUpperCase
     function upperCase(string) {
       let upperCaseString = string.split(' ').map((elem) => {
         let newElem = elem.charAt(0).toUpperCase() + elem.slice(1);
@@ -95,11 +102,22 @@
       })
       return upperCaseString.join(' ');
     }
-    let title = document.querySelector('.title');
+
     let monthlyPaymentText = document.querySelector('.monthly-payment__text');
-    title.innerHTML = upperCase(title.textContent);
-    monthlyPaymentText.innerHTML = upperCase(monthlyPaymentText.textContent);
+    monthlyPaymentText.innerHTML = upperCase(monthlyPaymentText.textContent); 
+
+
+    //Стилизация ползунков
+    let rangeInputs = document.querySelectorAll(".input-range");
+    rangeInputs.forEach((input) => {
+      input.oninput = function() {
+        var value = (this.value-this.min)/(this.max-this.min)*100
+        this.style.background = 'linear-gradient(to right, #54D4A0 0%, #54D4A0 ' + value + '%, #F0F0F0 ' + value + '%, #F0F0F0 100%)';
+      };
+    })
   </script>
+
+  
 
 </body>
 </html>

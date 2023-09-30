@@ -107,18 +107,24 @@ body {
   appearance: none;
 }
 
-input[type=range].input-range::-webkit-slider-runnable-track {
+input[type=range].input-range {
+  background: -webkit-gradient(linear, left top, right top, from(#54D4A0), color-stop(50%, #54D4A0), color-stop(50%, #F0F0F0), to(#F0F0F0));
+  background: linear-gradient(to right, #54D4A0 0%, #54D4A0 50%, #F0F0F0 50%, #F0F0F0 100%);
+  border-radius: 8px;
   height: 8px;
-  border-radius: 0.5em;
-  background: #F0F0F0;
+  outline: none;
+  -webkit-transition: background 450ms ease-in;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
 }
 
 input[type=range].input-range::-webkit-slider-thumb {
-  background: #54D4A0;
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
   -webkit-appearance: none;
+  border-radius: 100%;
+  background: #54D4A0;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .deposit-date-item {
@@ -158,6 +164,37 @@ input[type=range].input-range::-webkit-slider-thumb {
   font-weight: 600;
 }
 
+#calendar-box {
+  border: 1px solid #808080;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 195px;
+  position: relative;
+}
+
+#calendar {
+  border: none;
+  color: #808080;
+  font-size: 12px;
+  font-family: Raleway;
+  font-weight: 600;
+  outline: none;
+  padding: 12px 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+}
+.calendar-icon img {
+  width: 100%;
+}
+
 .payment {
   position: absolute;
   z-index: -1;
@@ -181,8 +218,8 @@ input[type=range].input-range::-webkit-slider-thumb {
   transition: all 250ms ease;
 }
 .payment:checked + .radio-label:before {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   border: 5px solid #54D4A0;
 }
 .payment-item {
@@ -235,7 +272,7 @@ input[type=range].input-range::-webkit-slider-thumb {
 }
 
 .total {
-  padding: 25px 43px;
+  padding: 25px 36px;
   background-color: #F6F6F6;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -300,7 +337,7 @@ input[type=range].input-range::-webkit-slider-thumb {
   }
 }
 @media (max-width: 996px) {
-  .form__side {
+  .form-side {
     padding: 20px 20px 0;
   }
   .title {
@@ -384,5 +421,11 @@ input[type=range].input-range::-webkit-slider-thumb {
   }
   .totals-box {
     margin-bottom: 40px;
+  }
+  #calendar-box {
+    min-width: 145px;
+  }
+  .deposit-date-box {
+    padding: 35px 0 0;
   }
 }/*# sourceMappingURL=style.css.map */

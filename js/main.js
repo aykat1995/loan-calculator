@@ -15,8 +15,8 @@ let amountInput = document.getElementById('amount'),
 // Прослушка изменения суммы кредита
 amountInput.addEventListener('change', () => {
   amount = amountInput.value;
-  borrowing.innerHTML = '£' + amount;
-  document.getElementById('borrow').innerHTML = '£' + amount;
+  borrowing.innerHTML = '£' + commaValue(amount);
+  document.getElementById('borrow').innerHTML = '£' + commaValue(amount);
   toCalculate(amount, rate, period);
 })
 
@@ -27,17 +27,26 @@ periodInput.addEventListener('change', () => {
   toCalculate(amount, rate, period);
 })
 
-// Прослушка изменения даты платежа
-dateInput.addEventListener('change', () => {
-  let date = dateInput.valueAsDate;
+//datepicker
+  flatpickr("#calendar-box", {
+    dateFormat: "d/m/Y",
+    onChange: function(selectedDate) {
+      checkPeriod(selectedDate[0]);
+    }
+  });
+
+// Проверка даты платежа
+
+function checkPeriod(date) {
   let currentDate = new Date();
 
   currentDate.setMonth(currentDate.getMonth() + 3);
-  
+
   if (date > currentDate) rate = 6.8;
+  else rate = 4.95;
   document.getElementById('rate').innerHTML = rate + '%';
   toCalculate(amount, rate, period);
-})
+}
 
 // Прослушка изменения способа платежа
 for (const el of typeOfPayment) {
@@ -52,7 +61,6 @@ function toCalculate(S, r, n) {
   //проверяем способ платежа:
   for (const el of typeOfPayment) {
     if (el.checked) {
-      console.log(el.value);
       if (el.value === 'true') r = r - 0.5;
     }
   }
@@ -62,10 +70,12 @@ function toCalculate(S, r, n) {
 
   let result = S * ((r_0 * Math.pow(1 + r_0, n_0)) / (Math.pow(1 + r_0, n_0) - 1));
   let resultInnerHtml = commaValue(result.toFixed(2));
+  let repayInnerHtml = commaValue((result * n_0).toFixed(2));
   monthlyPayment.innerHTML = '£' + resultInnerHtml;
-  repay.innerHTML = '£' + (result * n_0).toFixed(2);
+  repay.innerHTML = '£' + repayInnerHtml;
 }
 
+// Функция разделения тысячных разрядов числа
 function commaValue(value) {
   let parts = value.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");

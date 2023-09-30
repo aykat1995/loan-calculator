@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "air-datepicker": "^3.4.0"
+  },
+  "devDependencies": {
+    "vanillajs-datepicker": "^1.3.4"
   }
 }

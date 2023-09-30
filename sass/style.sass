@@ -83,17 +83,22 @@ body
     -moz-appearance: none
     appearance: none
 
-input[type=range].input-range::-webkit-slider-runnable-track
+input[type=range].input-range
+  background: linear-gradient(to right, $green 0%, $green 50%, $light-gray-slider 50%, $light-gray-slider 100%)
+  border-radius: 8px
   height: 8px
-  border-radius: 0.5em
-  background: $light-gray-slider
+  outline: none
+  transition: background 450ms ease-in
+  -webkit-appearance: none
 
 input[type=range].input-range::-webkit-slider-thumb
-  background: $green
-  width: 26px
-  height: 26px
-  cursor: pointer
   -webkit-appearance: none
+  border-radius: 100%
+  background: $green
+  width: 24px
+  height: 24px
+  cursor: pointer
+  // margin-top: -2px
 
 // deposit date  
 .deposit
@@ -124,6 +129,32 @@ input[type=range].input-range::-webkit-slider-thumb
   font-size: 29px
   font-weight: 600
 
+// calendar
+
+#calendar-box
+  border: 1px solid $label-color
+  border-radius: 3px
+  cursor: pointer
+  min-width: 195px
+  position: relative
+#calendar
+  border: none
+  color: $label-color
+  font-size: 12px
+  font-family: Raleway
+  font-weight: 600
+  outline: none
+  padding: 12px 12px
+  width: 100%
+  height: 100%
+.calendar-icon
+  position: absolute
+  right: 5px
+  top: 5px
+  width: 30px
+  height: 30px
+  img
+    width: 100%
 // type of payment
 .payment
   position: absolute
@@ -148,8 +179,8 @@ input[type=range].input-range::-webkit-slider-thumb
   &:checked
     &+.radio-label
       &:before
-        width: 17px
-        height: 17px
+        width: 16px
+        height: 16px
         border: 5px solid $green
   &-item
     display: flex
@@ -183,7 +214,7 @@ input[type=range].input-range::-webkit-slider-thumb
 
 // borrowing and to repay
 .total
-  padding: 25px 43px
+  padding: 25px 36px
   background-color: $light-gray-box
   display: flex
   flex-direction: column
@@ -227,7 +258,7 @@ input[type=range].input-range::-webkit-slider-thumb
 
 @media(max-width: 996px)
   .form
-    &__side
+    &-side
       padding: 20px 20px 0
   .title
     font-size: 38px
@@ -288,3 +319,7 @@ input[type=range].input-range::-webkit-slider-thumb
       margin-bottom: 13px
   .totals-box
     margin-bottom: 40px
+  #calendar-box
+    min-width: 145px
+  .deposit-date-box
+    padding: 35px 0 0
