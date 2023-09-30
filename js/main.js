@@ -58,15 +58,18 @@ for (const el of typeOfPayment) {
 // Функция расчета ежемесячного платежа
 function toCalculate(S, r, n) {
 
+  let r_0 = r,
+      n_0 = n;
+
   //проверяем способ платежа:
   for (const el of typeOfPayment) {
     if (el.checked) {
-      if (el.value === 'true') r = r - 0.5;
+      if (el.value === 'true') r_0 = r_0 - 0.5;
     }
   }
 
-  let r_0 = r / (100 * 12),
-      n_0 = n * 12
+  r_0 = r_0 / 100 / 12;  
+  // n_0 = n_0 * 12;
 
   let result = S * ((r_0 * Math.pow(1 + r_0, n_0)) / (Math.pow(1 + r_0, n_0) - 1));
   let resultInnerHtml = commaValue(result.toFixed(2));
