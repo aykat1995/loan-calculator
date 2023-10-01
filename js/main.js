@@ -51,24 +51,22 @@ function checkPeriod(date) {
 // Прослушка изменения способа платежа
 for (const el of typeOfPayment) {
   el.addEventListener('change', () => {
-  toCalculate(amount, rate, period);
-  })
-}
+      if (el.checked) {
+        if (el.value === 'true') rate = rate - 0.5;
+        else rate = rate + 0.5;
+      }
+    toCalculate(amount, rate, period);
+    document.getElementById('rate').innerHTML = rate + '%';
+    })
+  }
 
 // Функция расчета ежемесячного платежа
 function toCalculate(S, r, n) {
 
-  let r_0 = r,
+  let r_0,
       n_0 = n;
-
   //проверяем способ платежа:
-  for (const el of typeOfPayment) {
-    if (el.checked) {
-      if (el.value === 'true') r_0 = r_0 - 0.5;
-    }
-  }
-
-  r_0 = r_0 / 100 / 12;  
+  r_0 = r / 100 / 12;  
   // n_0 = n_0 * 12;
 
   let result = S * ((r_0 * Math.pow(1 + r_0, n_0)) / (Math.pow(1 + r_0, n_0) - 1));
