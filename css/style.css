@@ -116,6 +116,8 @@ input[type=range].input-range {
   -webkit-transition: background 450ms ease-in;
   transition: background 450ms ease-in;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input[type=range].input-range::-webkit-slider-thumb {
@@ -125,6 +127,16 @@ input[type=range].input-range::-webkit-slider-thumb {
   width: 24px;
   height: 24px;
   cursor: pointer;
+  border: none;
+}
+
+input[type=range].input-range::-moz-range-thumb {
+  border-radius: 100%;
+  background: #54D4A0;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border: none;
 }
 
 .deposit-date-item {
