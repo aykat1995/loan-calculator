@@ -32,7 +32,8 @@ periodInput.addEventListener('change', () => {
     dateFormat: "d/m/Y",
     onChange: function(selectedDate) {
       checkPeriod(selectedDate[0]);
-    }
+    },
+    disableMobile: "true"
   });
 
 // Проверка даты платежа
